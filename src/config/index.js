@@ -19,6 +19,7 @@ const configSource = {
   mockBaseUrl: ENV.VITE_BASE_MOCK_URL,
   // 服务端接口路径
   serverUrl: ENV.VITE_BASE_SERVER_URL,
+  github: 'https://github.com/wxinyue952/frontEnd.git',
 }
 
 /**

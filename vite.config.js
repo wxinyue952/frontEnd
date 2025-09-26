@@ -30,6 +30,9 @@ import presetAttributify from '@unocss/preset-attributify'
 // Unocss 指令转换插件
 import transformerDirective from '@unocss/transformer-directives'
 
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const viteEnv = loadEnv(mode, './')
@@ -73,6 +76,13 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/variables.scss";`,
+        },
+      },
+    },
     plugins: [
       vue(),
       // 使用Unocss
@@ -103,7 +113,7 @@ export default defineConfig(({ mode }) => {
       }),
       Components({
         // imports 指定组件所在位置，默认为 src/components
-        dirs: ['src/components/', 'src/view/'],
+        dirs: ['src/components/', 'src/view/', 'src/layout'],
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         resolvers: [
           ArcoResolver({
