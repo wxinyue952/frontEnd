@@ -1,4 +1,13 @@
-// 获取环境变量
+//
+/*
+ * @LastEditors: isboyjc
+ * @Description: 全局config配置文件
+ * @Date: 2022-09-17 14:35:02
+ * @LastEditTime: 2022-11-13 22:23:16
+ * @Author: isboyjc
+ */ //
+//获取环境变量
+
 const ENV = import.meta.env
 // 配置文件
 let config = {}
@@ -19,6 +28,7 @@ const configSource = {
   mockBaseUrl: ENV.VITE_BASE_MOCK_URL,
   // 服务端接口路径
   serverUrl: ENV.VITE_BASE_SERVER_URL,
+
   github: 'https://github.com/wxinyue952/frontEnd.git',
 }
 
@@ -34,18 +44,10 @@ const setConfig = (cfg) => {
   return config
 }
 
-/**
- * @Author isboyjc
- * @Date 2022-09-17 14:35:02
- * @description 重置全局配置
- * @param {*}
- * @return {Object} 全局默认配置 configSource
- */
 const resetConfig = () => {
   config = { ...configSource }
   return config
 }
-resetConfig()
 
 /**
  * @Author isboyjc
@@ -54,7 +56,7 @@ resetConfig()
  * @param {String} key 配置项，支持 'a.b.c' 的方式获取
  * @return {Object} 新的全局配置 config
  */
-const getConfig = (key) => {
+export const getConfig = (key) => {
   if (typeof key === 'string') {
     const arr = key.split('.')
     if (arr && arr.length) {
@@ -86,5 +88,5 @@ const getConfig = (key) => {
   }
   return { ...config }
 }
-
-export { getConfig, setConfig, resetConfig }
+export default { getConfig, setConfig, resetConfig }
+export { setConfig, resetConfig }

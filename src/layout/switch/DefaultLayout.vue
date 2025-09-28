@@ -1,4 +1,17 @@
-<script setup></script>
+<script>
+import IconRiLayoutTopFill from '~icons/ri/layout-top-fill'
+export default {
+  name: 'DefaultLayout',
+  icon: IconRiLayoutTopFill,
+  title: '默认布局',
+}
+</script>
+
+<script setup>
+import MenuCom from '@/layout/components/Menu/index.vue'
+import Logo from '../components/Logo.vue'
+import Github from '../components/Github.vue'
+</script>
 
 <template>
   <div>
@@ -13,10 +26,13 @@
               </template>
 
               <!-- 默认插槽和center插槽，默认插槽可不加template直接写内容，作用同center插槽 -->
-              <template #center></template>
+              <template #center>
+                <MenuCom />
+              </template>
 
               <!-- right插槽 -->
               <template #right>
+                <SwitchLayout />
                 <Github />
               </template>
             </Navbar>
@@ -27,7 +43,9 @@
             <component :is="Component" />
           </router-view>
         </a-layout-content>
-        <a-layout-footer> Footer </a-layout-footer>
+        <a-layout-footer>
+          <Footer />
+        </a-layout-footer>
       </a-layout>
     </div>
   </div>
@@ -35,7 +53,7 @@
 
 <style scoped>
 @apply .default-layout :deep(.arco-layout-header),
-.default-layout :deep(.arco-layout-footer),
+.default-layout :deep(.arco-layout-),
 .default-layout :deep(.arco-layout-content) {
   @apply text-[var(--color-text-1)] text-14px;
 }

@@ -3,7 +3,7 @@ import { ref } from 'vue'
 const name = ref('isboyjc')
 </script>
 <template>
-  <div>hello {{ name }}, this is helloworld components</div>
+  <div>{{ name }}, this is world components</div>
 </template>
 
 <style scoped></style>
