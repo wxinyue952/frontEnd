@@ -34,6 +34,7 @@ const handleCollapse = (val, type) => {
           <Navbar>
             <template #left> <Logo /> </template>
             <template #right>
+              <SwitchMode />
               <SwitchLayout />
               <Github />
             </template>

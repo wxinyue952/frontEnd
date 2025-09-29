@@ -1,9 +1,53 @@
 import { defineStore } from 'pinia'
-import { shallowRef } from 'vue'
+import { shallowRef, ref, markRaw, watchEffect } from 'vue'
 import { getConfig } from '@/config/index'
+import { useColorMode } from '@vueuse/core'
+import IconMaterialSymbolsWbSunnyRounded from '~icons/material-symbols/wb-sunny-rounded'
+import IconMaterialSymbolsDarkModeRounded from '~icons/material-symbols/dark-mode-rounded'
+import IconMaterialSymbolsComputer from '~icons/material-symbols/computer'
+
 export const useSystemStore = defineStore(
   'system',
   () => {
+    // 模式列表
+    const modeList = ref([
+      {
+        name: 'auto',
+        icon: markRaw(IconMaterialSymbolsComputer),
+        title: '自动模式',
+      },
+      {
+        name: 'light',
+        icon: markRaw(IconMaterialSymbolsWbSunnyRounded),
+        title: '亮色模式',
+      },
+      {
+        name: 'dark',
+        icon: markRaw(IconMaterialSymbolsDarkModeRounded),
+        title: '暗色模式',
+      },
+    ])
+    // 当前模式
+    const currentMode = ref(null)
+
+    const mode = useColorMode({
+      attribute: 'arco-theme',
+      emitAuto: true,
+      selector: 'body',
+      initialValue: currentMode.value?.name,
+      storageKey: null,
+    })
+    watchEffect(() => (mode.value = currentMode.value?.name))
+
+    // 初始化模式
+    const initMode = () => {
+      if (!currentMode.value) {
+        currentMode.value = modeList.value[0]
+      } else {
+        currentMode.value = modeList.value.find((item) => item.name === currentMode.value.name)
+      }
+    }
+
     // 当前可切换布局
     const currentSwitchlayout = shallowRef(null)
     // 可切换布局列表
@@ -29,6 +73,9 @@ export const useSystemStore = defineStore(
       currentSwitchlayout,
       switchLayoutList,
       initSwitchLayout,
+      currentMode,
+      modeList,
+      initMode,
     }
   },
   {
@@ -36,7 +83,7 @@ export const useSystemStore = defineStore(
       key: `${getConfig('appCode')}-pinia-system`,
       enabled: true,
       storage: window.localStorage,
-      paths: ['currentSwitchlayout.name'],
+      paths: ['currentSwitchlayout.name', 'currentMode.name'],
     },
   },
 )

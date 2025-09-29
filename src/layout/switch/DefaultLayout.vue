@@ -32,6 +32,7 @@ import Github from '../components/Github.vue'
 
               <!-- right插槽 -->
               <template #right>
+                <SwitchMode />
                 <SwitchLayout />
                 <Github />
               </template>
