@@ -62,7 +62,7 @@ const handleCollapse = (val, type) => {
               <component :is="Component" />
             </router-view>
           </a-layout-content>
-          <a-layout-footer> Footer </a-layout-footer>
+          <a-layout-footer>Footer</a-layout-footer>
         </a-layout>
       </a-layout>
     </a-layout>

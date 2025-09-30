@@ -11,6 +11,7 @@ export default {
 import MenuCom from '@/layout/components/Menu/index.vue'
 import Logo from '../components/Logo.vue'
 import Github from '../components/Github.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>

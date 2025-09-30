@@ -13,7 +13,7 @@ systemStore.initSwitchLayout(switchLayoutList)
     <!-- <component :is="" /> -->
     <component :is="systemStore.currentSwitchlayout" />
     <!-- <DefaultLayout /> -->
-    <SidebarLayout />
+    <!--<SidebarLayout />-->
   </div>
 </template>
 
