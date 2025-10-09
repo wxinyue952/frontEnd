@@ -15,13 +15,13 @@ const mode = toRef(props, 'mode')
 //const menuList = ref(menuRouterFormatList)
 // 菜单数据
 const menuList = ref(menuRouterFormat(menuRouter))
+
 const router = useRouter()
-const route = useRoute()
 // 子菜单点击事件
 const onClickMenuItem = (key) => {
   router.push(key)
 }
-
+const route = useRoute()
 // 当前选中菜单
 const selectedKeys = computed(() => [route.path])
 </script>

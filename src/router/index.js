@@ -9,10 +9,10 @@ const router = createRouter({
       path: '/',
       name: 'Layout',
       component: () => import('@/layout/SwitchIndex.vue'),
-      redirect: '/',
+      redirect: { name: 'HomePage' },
       children: [
         {
-          path: '/',
+          path: '',
           name: 'HomePage',
           meta: {
             title: 'TOOLSDOG',
